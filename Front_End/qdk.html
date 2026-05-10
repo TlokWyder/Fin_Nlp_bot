@@ -1,22 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="UTF-8"><title>FAQ Bot</title></head>
+<head>
+    <meta charset="UTF-8"><title>FAQ Bot</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="img/icon/img.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+AR+Guides&display=swap" rel="stylesheet">
+    <title>MYSHOP</title>
+</head>
 <body>
-    <div id="chat" style="height: 300px; border: 1px solid #ccc; overflow-y: scroll; padding: 10px;"></div>
-    <input type="text" id="msg"><button onclick="send()">Отправить</button>
-    <script>
-        async function send() {
-            let input = document.getElementById('msg');
-            let chat = document.getElementById('chat');
-            let res = await fetch('http://127.0.0.1:8000/chat', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({message: input.value})
-            });
-            let data = await res.json();
-            chat.innerHTML += `<div><b>Вы:</b> ${input.value}</div><div><b>Бот:</b> ${data.response}</div>`;
-            input.value = '';
-        }
-    </script>
+    <header>
+        <icon>
+            <img src="img/icon/my_mark.png" alt="my_shop icon">
+        </icon>
+        <nav>
+            <div class="HELP"><a href="qdk.html">HELP</a></div>
+            <div class="store"><a href="qdk.html">Srote</a></div>
+            <div class="basket"><a href="qdk.html">Basket</a></div>
+            <div class="account"><a href="qdk.html">Account</a></div>
+        </nav>
+    </header>
+
+    <main>
+        <chat class="sss">
+            <div id="chat"></div>
+            <div>
+                <input type="text" id="msg">
+                <button onclick="send()">Отправить</button>
+            </div>
+
+        <script>
+            async function send() {
+                let input = document.getElementById('msg');
+                let chat = document.getElementById('chat');
+                let res = await fetch('http://127.0.0.1:8000/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({message: input.value})
+                });
+                let data = await res.json();
+                chat.innerHTML += `<div><b>Вы:</b> ${input.value}</div><div><b>Бот:</b> ${data.response}</div>`;
+                input.value = '';
+            }
+        </script>
+        </chat>
+    </main>
 </body>
 </html>
