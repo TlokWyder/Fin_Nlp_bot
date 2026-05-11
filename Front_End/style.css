@@ -17,14 +17,19 @@ icon{
     width: 7%;
 }
 main{
-    width: 100%;
+    width: 88%;
+    margin: 6% ;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap; /* Разрешает перенос на новую строку */
+    flex-direction: column;
     justify-content: center;
-
+    justify-items: center;
+    width: fit-content;
+    display: inline-block; /* Позволяет блокам вставать в ряд */
+    vertical-align: top;
 }
 .sss{
-    width: 80%;
+    width: 100%;
 
     justify-content: center;
     background-color: #578a8a;
@@ -35,6 +40,7 @@ main{
     background-color: aqua;
     flex-direction: column;
     justify-content: end;
+
 }
 chat input{
     width: 93%;
@@ -57,12 +63,133 @@ nav{
 }
 mav div{
     width: 20%;
+    background-color: #d9d9d9;
+    border-radius: 10px;
 }
+.HELP{    background-color: #fff9f9;    border-radius: 10px;}
 nav div a{
     font-size: 30px;
+    color: black;
 }
 .playwrite-ar-guides-regular {
   font-family: "Playwrite AR Guides", cursive;
   font-weight: 400;
   font-style: normal;
+}
+
+Add{
+    width: 100%;
+    display:flex ;
+    justify-content: center;
+    justify-items: center;
+
+}
+
+
+
+
+
+
+
+.container {
+    display: grid;
+    /* Создает колонки. auto-fit сам решит, сколько их влезет.
+       700px — это минимальная ширина одной карточки */
+    grid-template-columns: repeat(auto-fit, minmax(700px, 1fr));
+    gap: 20px;       /* Расстояние между карточками */
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+
+/* Основной контейнер-таблица */
+.product-card {
+    margin-top: 6%;
+    width: 100%;
+    max-width: 900px;
+    background-color: #f0f0f0; /* Светло-серый фон как на картинке */
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+
+}
+
+/* Ячейка с фото */
+.product-image-cell {
+    width: 170px;
+    padding: 10px;
+    background-color: white;
+}
+
+.product-image {
+    width: 100%;
+    display: block;
+}
+
+/* Контейнер для текстовой части */
+.product-info-cell {
+    padding: 20px;
+    vertical-align: top;
+}
+
+.inner-info-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 15px 0;
+}
+
+/* Стили заголовка и цены */
+.main-details div {
+    background-color: #d9d9d9;
+    padding: 8px 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.rating {
+    color: yellow;
+    font-size: 24px;
+    text-shadow: 1px 1px 1px #000;
+}
+
+/* Список характеристик */
+.specs-list {
+    background-color: #d9d9d9;
+    padding: 10px 20px;
+    vertical-align: top;
+}
+
+.specs-list ul {
+    margin: 0;
+    padding-left: 15px;
+    list-style-type: disc;
+}
+
+.specs-list li {
+    margin-bottom: 5px;
+}
+
+/* Кнопки */
+.actions {
+    vertical-align: top;
+    text-align: center;
+    width: 120px;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 40px;
+    background-color: #d9d9d9;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #cccccc;
 }
