@@ -1,50 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8"><title>FAQ Bot</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
     <link rel="icon" type="image/png" href="../img/icon/img.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playwrite+AR+Guides&display=swap" rel="stylesheet">
-    <title>MYSHOP</title>
+    <title>MYSHOP | Virtual Assistant</title>
 </head>
 <body>
-    <header>
-        <icon>
-            <img src="../img/icon/my_mark.png" alt="my_shop icon">
-        </icon>
-        <nav>
-            <div class="HELP"><a href="qdk.html">HELP</a></div>
-            <div class="HELP"><a href="index.html">Srote</a></div>
-            <div class="HELP"><a href="qdk.html">Basket</a></div>
-            <div class="HELP"><a href="qdk.html">Account</a></div>
+    <header class="main-header">
+        <a href="index.html" class="brand-logo">
+            <img src="../img/icon/my_mark.png" alt="MYSHOP icon">
+        </a>
+        <nav class="main-nav">
+            <a href="qdk.html" class="nav-link active">HELP</a>
+            <a href="index.html" class="nav-link">Store</a>
+            <a href="basket.html" class="nav-link">Basket</a>
+            <a href="account.html" class="nav-link">Account</a>
         </nav>
     </header>
 
-    <main>
-        <chat class="sss">
-            <div id="chat"></div>
-            <div>
-                <input type="text" id="msg">
-                <button onclick="send()">Отправить</button>
+    <main class="layout-container" style="display: flex; justify-content: center;">
+
+        <div class="chat-container" style="width: 100%;">
+            <div class="chat-header">
+                Support & FAQ Assistant
             </div>
 
+            <div id="chat" class="chat-history">
+                <div class="msg-bubble msg-bot">
+                    Hello! I am your MYSHOP virtual assistant. How can I help you today?
+                </div>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" id="msg" placeholder="Ask about shipping, returns, or products..." onkeypress="handleKeyPress(event)">
+                <button class="btn-primary" onclick="send()">Send</button>
+            </div>
+        </div>
+
         <script>
+            // Allow sending via Enter key for seamless UX
+            function handleKeyPress(e) {
+                if(e.keyCode === 13){
+                    send();
+                }
+            }
+
             async function send() {
                 let input = document.getElementById('msg');
                 let chat = document.getElementById('chat');
-                let res = await fetch('http://127.0.0.1:8000/chat', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({message: input.value})
-                });
-                let data = await res.json();
-                chat.innerHTML += `<div><b>Вы:</b> ${input.value}</div><div><b>Бот:</b> ${data.response}</div>`;
+                let userText = input.value.trim();
+
+                if(!userText) return; // Prevent empty API calls
+
+                // Render User Message with distinct styling
+                chat.innerHTML += `<div class="msg-bubble msg-user">${userText}</div>`;
                 input.value = '';
+                chat.scrollTop = chat.scrollHeight; // Auto-scroll interaction
+
+                try {
+                    let res = await fetch('http://127.0.0.1:8000/chat', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({message: userText})
+                    });
+
+                    let data = await res.json();
+
+                    // Render Bot Message response
+                    chat.innerHTML += `<div class="msg-bubble msg-bot">${data.response}</div>`;
+                    chat.scrollTop = chat.scrollHeight;
+
+                } catch (error) {
+                    chat.innerHTML += `<div class="msg-bubble msg-bot" style="color: red;">Connection error. Please try again later.</div>`;
+                }
             }
         </script>
-        </chat>
     </main>
 </body>
 </html>

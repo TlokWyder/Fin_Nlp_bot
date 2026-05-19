@@ -7,7 +7,6 @@ router = APIRouter()
 
 @router.post("/checkout")
 async def checkout(data: CheckoutIn, current_user=Depends(get_current_user)):
-    #проверяем, что корзина принадлежит текущему пользователю
     try:
         supabase.table("carts") \
             .select("id") \
@@ -22,7 +21,6 @@ async def checkout(data: CheckoutIn, current_user=Depends(get_current_user)):
         )
 
     try:
-        # FIX #6: user_id берём из токена, а не из тела запроса
         result = supabase.rpc("place_order", {
             "p_user_id": current_user.id,
             "p_cart_id": data.cart_id

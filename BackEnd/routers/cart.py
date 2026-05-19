@@ -6,7 +6,6 @@ router = APIRouter()
 
 @router.post("/add")
 async def add_to_cart(item: CartItemIn):
-        # FIX #1: cart_id теперь в теле запроса (item.cart_id), не query param
     try:
         prod = supabase.table("Products").select("stock_quantity")\
                .eq("id", item.product_id).single().execute()
@@ -17,7 +16,7 @@ async def add_to_cart(item: CartItemIn):
         raise HTTPException(status_code=400, detail="Недостаточно товара на складе")
 
     result = supabase.table("CartItems").insert({
-        "cart_id": item.cart_id,   # FIX #1: берём из тела
+        "cart_id": item.cart_id,
         "product_id": item.product_id,
         "quantity": item.quantity
     }).execute()

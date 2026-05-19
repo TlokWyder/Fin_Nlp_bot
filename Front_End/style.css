@@ -1,195 +1,543 @@
-body{
-    background-color: white;
-}
-header{
-    width: 100%;
-    height: 200px;
-    background-color: #FF3131;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-img{
-    width: 100%;
-}
-icon{
-    margin-left:6%;
-    width: 7%;
-}
-main{
-    width: 88%;
-    margin: 6% ;
-    display: flex;
-    flex-wrap: wrap; /* Разрешает перенос на новую строку */
-    flex-direction: column;
-    justify-content: center;
-    justify-items: center;
-    width: fit-content;
-    display: inline-block; /* Позволяет блокам вставать в ряд */
-    vertical-align: top;
-}
-.sss{
-    width: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+AR+Guides&family=Montserrat:wght@400;500;600;700&display=swap');
 
-    justify-content: center;
-    background-color: #578a8a;
-}
-#chat{
-    width: 100%;
-    height: 400px;
-    background-color: aqua;
-    flex-direction: column;
-    justify-content: end;
+/* ==========================================================================
+   Design Tokens & CSS Variables
+   ========================================================================== */
+:root {
 
-}
-chat input{
-    width: 93%;
-    height: 20px;
-}
-chat buttin{
-    width: 10%;
+    --color-brand-primary: #FF3131;
+    --color-brand-hover: #E02828;
+
+    /* Neutral Palette for 2026 Minimalist Aesthetic */
+    --color-bg-base: #F8F9FA;
+    --color-surface: #FFFFFF;
+    --color-text-main: #212529;
+    --color-text-muted: #6C757D;
+    --color-border: #E9ECEF;
+    --color-border-dark: #DEE2E6;
+
+    /* Semantic Colors */
+    --color-rating: #FFC107;
+    --color-success: #28A745;
+
+    /* Typography System */
+    --font-brand: 'Playwrite AR Guides', cursive;
+    --font-ui: 'Montserrat', sans-serif;
+
+    /* Spacing & Elevation */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 8px 16px rgba(0,0,0,0.08);
+    --shadow-hover: 0 12px 24px rgba(255, 49, 49, 0.15);
+    --transition-speed: 0.3s;
 }
 
-nav{
-    margin-right:7%;
-    width: 60%;
-    margin-left: 20%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    font-family:"Playwrite AR Guides", cursive ;
-    font-style: normal;
-}
-mav div{
-    width: 20%;
-    background-color: #d9d9d9;
-    border-radius: 10px;
-}
-.HELP{    background-color: #fff9f9;    border-radius: 10px;}
-nav div a{
-    font-size: 30px;
-    color: black;
-}
-.playwrite-ar-guides-regular {
-  font-family: "Playwrite AR Guides", cursive;
-  font-weight: 400;
-  font-style: normal;
-}
-
-Add{
-    width: 100%;
-    display:flex ;
-    justify-content: center;
-    justify-items: center;
-
-}
-
-
-
-
-
-
-
-.container {
-    display: grid;
-    /* Создает колонки. auto-fit сам решит, сколько их влезет.
-       700px — это минимальная ширина одной карточки */
-    grid-template-columns: repeat(auto-fit, minmax(700px, 1fr));
-    gap: 20px;       /* Расстояние между карточками */
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-
-
-/* Основной контейнер-таблица */
-.product-card {
-    margin-top: 6%;
-    width: 100%;
-    max-width: 900px;
-    background-color: #f0f0f0; /* Светло-серый фон как на картинке */
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-
-}
-
-/* Ячейка с фото */
-.product-image-cell {
-    width: 170px;
-    padding: 10px;
-    background-color: white;
-}
-
-.product-image {
-    width: 100%;
-    display: block;
-}
-
-/* Контейнер для текстовой части */
-.product-info-cell {
-    padding: 20px;
-    vertical-align: top;
-}
-
-.inner-info-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 15px 0;
-}
-
-/* Стили заголовка и цены */
-.main-details div {
-    background-color: #d9d9d9;
-    padding: 8px 15px;
-    margin-bottom: 15px;
-    display: inline-block;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.rating {
-    color: yellow;
-    font-size: 24px;
-    text-shadow: 1px 1px 1px #000;
-}
-
-/* Список характеристик */
-.specs-list {
-    background-color: #d9d9d9;
-    padding: 10px 20px;
-    vertical-align: top;
-}
-
-.specs-list ul {
+/* ==========================================================================
+   CSS Reset & Base Styles
+   ========================================================================== */
+* {
     margin: 0;
-    padding-left: 15px;
-    list-style-type: disc;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.specs-list li {
-    margin-bottom: 5px;
+body {
+    background-color: var(--color-bg-base);
+    font-family: var(--font-ui);
+    color: var(--color-text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Кнопки */
-.actions {
-    vertical-align: top;
-    text-align: center;
-    width: 120px;
+ul {
+    list-style: none;
 }
 
-.btn {
-    display: block;
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ==========================================================================
+   Global Layout: Header & Navigation
+   ========================================================================== */
+.main-header {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 40px;
-    background-color: #d9d9d9;
+    height: 100px;
+    background-color: var(--color-surface);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    width: 6%;
+}
+
+.brand-logo img {
+    width: 100%;
+    height: auto;
+}
+
+.main-nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    font-family: var(--font-brand);
+    font-size: 1.2rem;
+    color: var(--color-text-main);
+    transition: color var(--transition-speed) ease;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--color-brand-primary);
+    background-color: rgba(255, 49, 49, 0.05);
+}
+
+/* Container for main content */
+.layout-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 5%;
+}
+
+/* ==========================================================================
+   Banner / Hero Section
+   ========================================================================== */
+.hero-banner {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow-md);
+}
+
+.hero-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   E-Commerce Components: Product Cards
+   ========================================================================== */
+.catalog-grid {
+    display: grid;
+    /* Implements responsive reflowing without media queries */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    border: 1px solid var(--color-border);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(255, 49, 49, 0.2);
+}
+
+.product-image-wrapper {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+}
+
+.product-image-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.product-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-main);
+}
+
+.product-rating {
+    color: var(--color-rating);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.product-specs {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.product-specs li {
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.product-specs li::before {
+    content: "•";
+    color: var(--color-brand-primary);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.product-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.product-price-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+}
+
+.stock-status {
+    font-size: 0.85rem;
+    color: var(--color-success);
+    font-weight: 500;
+    background-color: rgba(40, 167, 69, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+}
+
+/* Primary Button Design */
+.btn-primary {
+    background-color: var(--color-brand-primary);
+    color: #fff;
     border: none;
+    border-radius: var(--radius-sm);
+    padding: 0.8rem 1.5rem;
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+    text-align: center;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-brand-hover);
+}
+
+.btn-secondary {
+    background-color: var(--color-surface);
+    color: var(--color-brand-primary);
+    border: 2px solid var(--color-brand-primary);
+    border-radius: var(--radius-sm);
+    padding: 0.8rem 1.5rem;
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    text-align: center;
+    width: 100%;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 49, 49, 0.05);
+}
+
+.action-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* ==========================================================================
+   Shopping Cart (Basket) specific styles
+   ========================================================================== */
+.cart-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.cart-items-section {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+    align-items: center;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-img {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+    background-color: #fff;
+    border-radius: var(--radius-sm);
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+}
+
+.cart-item-info h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.qty-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border-dark);
+    background: var(--color-surface);
     cursor: pointer;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.btn:hover {
-    background-color: #cccccc;
+.qty-btn:hover {
+    background: var(--color-border);
+}
+
+.cart-item-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: right;
+}
+
+.cart-remove {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 0.5rem;
+    display: inline-block;
+}
+
+.order-summary-section {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 120px; /* Sticky behavior for desktop */
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    color: var(--color-text-muted);
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--color-border);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   Account Dashboard specific styles (Bento Grid)
+   ========================================================================== */
+.bento-dashboard {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-auto-rows: minmax(150px, auto);
+    gap: 1.5rem;
+}
+
+.bento-card {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+}
+
+.bento-header {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-main);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Responsive grid placements */
+.bento-profile { grid-column: span 8; grid-row: span 2; }
+.bento-wallet { grid-column: span 4; grid-row: span 1; background: linear-gradient(135deg, #111, #333); color: white; }
+.bento-wallet .bento-header { color: white; }
+.bento-orders { grid-column: span 12; grid-row: span 2; }
+.bento-settings { grid-column: span 4; grid-row: span 1; }
+
+@media (max-width: 1024px) {
+    .bento-profile { grid-column: span 12; }
+    .bento-wallet { grid-column: span 6; }
+    .bento-settings { grid-column: span 6; }
+}
+@media (max-width: 600px) {
+    .bento-card { grid-column: span 12 !important; }
+}
+
+/* ==========================================================================
+   Chat / FAQ interface (qdk.html)
+   ========================================================================== */
+.chat-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+}
+
+.chat-header {
+    background-color: var(--color-brand-primary);
+    color: white;
+    padding: 1.5rem;
+    font-weight: 600;
+    font-family: "Footlight MT Light";
+    font-size: 1.5rem;
+}
+
+.chat-history {
+    flex-grow: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #F0F2F5;
+}
+
+.msg-bubble {
+    max-width: 75%;
+    padding: 1rem 1.5rem;
+    border-radius: 20px;
+    line-height: 1.4;
+}
+
+.msg-bot {
+    align-self: flex-start;
+    background-color: white;
+    color: var(--color-text-main);
+    border-bottom-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+}
+
+.msg-user {
+    align-self: flex-end;
+    background-color: var(--color-brand-primary);
+    color: white;
+    border-bottom-right-radius: 4px;
+    box-shadow: var(--shadow-sm);
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 1.5rem;
+    background-color: white;
+    border-top: 1px solid var(--color-border);
+    gap: 1rem;
+}
+
+.chat-input-area input {
+    flex-grow: 1;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--color-border-dark);
+    border-radius: 30px;
+    font-size: 1rem;
+    font-family: var(--font-ui);
+    outline: none;
+    transition: border-color var(--transition-speed) ease;
+}
+
+.chat-input-area input:focus {
+    border-color: var(--color-brand-primary);
+}
+
+.chat-input-area button {
+    width: auto;
+    border-radius: 30px;
 }

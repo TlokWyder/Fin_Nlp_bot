@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../img/icon/img.png">
+    <title>MYSHOP | Basket</title>
+</head>
+<body>
+    <header class="main-header">
+        <a href="index.html" class="brand-logo">
+            <img src="../img/icon/my_mark.png" alt="MYSHOP icon">
+        </a>
+        <nav class="main-nav">
+            <a href="qdk.html" class="nav-link">HELP</a>
+            <a href="index.html" class="nav-link">Store</a>
+            <a href="basket.html" class="nav-link active">Basket</a>
+            <a href="account.html" class="nav-link">Account</a>
+        </nav>
+    </header>
+
+    <main class="layout-container">
+        <h1 style="margin-bottom: 2rem;">Your Shopping Basket</h1>
+
+        <div class="cart-layout">
+            <!-- Left Column: Item List -->
+            <div class="cart-items-section">
+                <!-- Example Item Block (Link this to FastAPI dynamic generation) -->
+                <div class="cart-item">
+                    <img src="../img/tovars/Iphone17.png" alt="iPhone 17 Pro" class="cart-item-img">
+                    <div class="cart-item-info">
+                        <h4>iPhone 17 Pro</h4>
+                        <p style="color: var(--color-text-muted); font-size: 0.9rem;">Chip: A19 Pro | Space Black</p>
+                        <div class="quantity-controls">
+                            <button class="qty-btn">-</button>
+                            <span>1</span>
+                            <button class="qty-btn">+</button>
+                        </div>
+                        <span class="cart-remove">Remove</span>
+                    </div>
+                    <div class="cart-item-price">
+                        $999.00
+                    </div>
+                </div>
+
+                <div class="cart-item">
+                    <img src="../img/tovars/macbookM3.png" alt="MacBook Air M3" class="cart-item-img">
+                    <div class="cart-item-info">
+                        <h4>MacBook Air M3</h4>
+                        <p style="color: var(--color-text-muted); font-size: 0.9rem;">RAM: 8GB | Storage: 256GB SSD</p>
+                        <div class="quantity-controls">
+                            <button class="qty-btn">-</button>
+                            <span>1</span>
+                            <button class="qty-btn">+</button>
+                        </div>
+                        <span class="cart-remove">Remove</span>
+                    </div>
+                    <div class="cart-item-price">
+                        $1099.00
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Order Summary -->
+            <aside class="order-summary-section">
+                <h3 style="margin-bottom: 1.5rem;">Order Summary</h3>
+                <div class="summary-row">
+                    <span>Subtotal (2 items)</span>
+                    <span>$2098.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Estimated Shipping</span>
+                    <span>Free</span>
+                </div>
+                <div class="summary-row">
+                    <span>Estimated Tax</span>
+                    <span>Calculated at checkout</span>
+                </div>
+
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span>$2098.00</span>
+                </div>
+
+                <button class="btn-primary" style="padding: 1rem; font-size: 1.1rem;">Proceed to Checkout</button>
+                <div style="margin-top: 1rem; text-align: center; color: var(--color-text-muted); font-size: 0.85rem;">
+                    🔒 Secure Payment Gateway
+                </div>
+            </aside>
+        </div>
+    </main>
+</body>
+</html>

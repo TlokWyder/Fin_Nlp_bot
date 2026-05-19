@@ -7,7 +7,7 @@ class ProductOut(BaseModel):
     stock_quantity: int
 
 class CartItemIn(BaseModel):
-    cart_id: str       # FIX #1: теперь в теле запроса, не query param
+    cart_id: str
     product_id: int
     quantity: int = 1
 
@@ -16,4 +16,4 @@ class MessageIn(BaseModel):
     text: str
 
 class CheckoutIn(BaseModel):
-    cart_id: str       # FIX #6: убрали user_id — берём из JWT токена
+    cart_id: str
