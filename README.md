@@ -1,7 +1,7 @@
 # Fin_Nlp_bot
 
 ## Installation and launch
-
+(Python v11)
 Just copy to terminal:
 
 ```bash
